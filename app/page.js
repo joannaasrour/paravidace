@@ -57,7 +57,7 @@ function Hero() {
       <div className="hero-copy">
         <div className="wrap">
           <div>
-            <h1>Designed, engineered<br />and built as two.</h1>
+            <h1>Designed, engineered<br />and built as one.</h1>
             <div className="sub"><span>Lebanon</span><i /><span>Cyprus</span><i /><span>30+ years</span></div>
           </div>
           {n > 1 && (
