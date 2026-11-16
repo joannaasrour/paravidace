@@ -23,6 +23,7 @@ export const PROJECTS = [
   {
     name: "Malik's", country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '',
     locations: [
+      { name: 'Mansourieh', img: '/img/maliks-mansourieh.jpg' },
       { name: 'Damour', img: '' },
       { name: 'Naameh', img: '' },
       { name: 'Saida', img: '' },
