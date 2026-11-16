@@ -59,3 +59,16 @@ export const CONTACT = {
   email: 'daniel.srour@paravidagroup.com',
   office: 'Bsalim, Mount Lebanon',
 };
+
+// ---------- helpers (no need to edit) ----------
+export const slugOf = (p) => p.name.toLowerCase().replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+export const isMulti = (p) => Array.isArray(p.locations) && p.locations.length > 1;
+export const coverOf = (p) => p.img || (isMulti(p) && (p.locations.find((l) => l.img) || {}).img) || '';
+export const placeOf = (p) => (isMulti(p) ? `${p.locations.length} locations` : p.location);
+export const countryOf = (p) => p.country || (p.location === 'Cyprus' || p.location === 'Romania' ? p.location : '');
+export const SECTOR_ORDER = ['Retail', 'Restaurants', 'Supermarkets', 'Commercial', 'Residential'];
+export const whereOf = (p) => {
+  const c = countryOf(p);
+  if (isMulti(p)) return `${p.locations.length} locations${c ? ' · ' + c : ''}`;
+  return [p.location, p.country].filter(Boolean).join(', ');
+};

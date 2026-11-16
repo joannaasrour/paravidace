@@ -1,93 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import { HERO_PHOTOS, ABOUT_PHOTO, PROJECTS, CONTACT } from './data';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { HERO_PHOTOS, ABOUT_PHOTO, PROJECTS, CONTACT, slugOf, coverOf, isMulti } from './data';
+import { Header, Footer, Photo, ProjectCard } from './components';
 
 const pad = (n) => (n < 10 ? '0' : '') + n;
-
-function Mark({ width = 5, color = 'currentColor' }) {
-  return (
-    <svg viewBox="0 0 100 100" fill="none" stroke={color} strokeWidth={width} aria-hidden="true">
-      <path d="M80.64 24.29 A40 40 0 1 0 80.64 75.71" />
-      <path d="M68.07 29.93 A27 27 0 1 0 68.07 70.07" />
-      <path d="M23 50 H63" />
-    </svg>
-  );
-}
-
-function Photo({ src, alt, label = 'Photo', pos, className = '' }) {
-  return (
-    <div className={'ph ' + className}>
-      {src ? <img src={src} alt={alt} loading="lazy" style={pos ? { objectPosition: pos } : undefined} /> : <span className="empty">{label}</span>}
-    </div>
-  );
-}
-
-function LocationsPanel({ p, onClose }) {
-  useEffect(() => {
-    const key = (e) => { if (e.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', key);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.removeEventListener('keydown', key); document.body.style.overflow = prev; };
-  }, [onClose]);
-  return (
-    <div className="locs-overlay" role="dialog" aria-modal="true" aria-label={`${p.name} locations`} onClick={onClose}>
-      <div className="locs-panel" onClick={(e) => e.stopPropagation()}>
-        <div className="locs-head">
-          <div>
-            <p className="kicker">{p.locations.length} locations · {p.country}</p>
-            <h2 className="title">{p.name}</h2>
-          </div>
-          <button type="button" className="locs-close" onClick={onClose} aria-label="Close">Close ✕</button>
-        </div>
-        <div className="locs-grid">
-          {p.locations.map((l) => (
-            <article key={l.name} className="loc-card">
-              <Photo src={l.img} alt={`${p.name} ${l.name}`} />
-              <div className="loc-cap">
-                <h3>{l.name}</h3>
-                <span className="loc">{p.country}</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Card({ p, shape = '' }) {
-  const [open, setOpen] = useState(false);
-  const multi = Array.isArray(p.locations) && p.locations.length > 1;
-  const cover = p.img || (multi && (p.locations.find((l) => l.img) || {}).img) || '';
-  const where = multi
-    ? `${p.locations.length} locations · ${p.country}`
-    : (p.country ? `${p.location}, ${p.country}` : p.location);
-  const names = multi ? p.locations.map((l) => l.name) : [];
-  return (
-    <article className={'card' + (multi ? ' multi' : '')}>
-      {multi ? (
-        <button type="button" className="ph-btn" onClick={() => setOpen(true)} aria-label={`See all ${p.name} locations`}>
-          <Photo src={cover} alt={p.name} className={shape} />
-          <span className="count">{p.locations.length}<small>locations</small></span>
-        </button>
-      ) : <Photo src={cover} alt={p.name} className={shape} />}
-      <div className="cap">
-        <h3>{p.name}</h3>
-        <span className="loc">{where}</span>
-        {multi && (
-          <span className="branches">
-            {names.slice(0, 4).join(' · ')}{names.length > 4 ? ` · +${names.length - 4} more` : ''}
-          </span>
-        )}
-        {p.services?.length > 0 && <span className="svc">{p.services.join('  ·  ')}</span>}
-        {multi && <button type="button" className="see-all" onClick={() => setOpen(true)}>See all locations &rarr;</button>}
-      </div>
-      {open && <LocationsPanel p={p} onClose={() => setOpen(false)} />}
-    </article>
-  );
-}
 
 function Hero() {
   const n = HERO_PHOTOS.length;
@@ -127,40 +45,36 @@ function Hero() {
   );
 }
 
-const ORDER = ['Retail', 'Restaurants', 'Supermarkets', 'Commercial', 'Residential'];
-
-function PreviousWork() {
-  const done = PROJECTS.filter((p) => p.status !== 'Upcoming');
-  const sectors = ['All', ...ORDER.filter((s) => done.some((p) => p.sector === s))];
-  const [current, setCurrent] = useState('All');
-  const [shown, setShown] = useState(6);
-  const all = done.filter((p) => current === 'All' || p.sector === current);
-  const list = all.slice(0, shown);
-  const left = list.filter((_, k) => k % 2 === 0);
-  const right = list.filter((_, k) => k % 2 === 1);
-  const shape = (k) => (k % 4 === 0 || k % 4 === 3 ? 'tall' : 'wide');
+function SelectedWork() {
+  const featured = PROJECTS.filter((p) => p.status !== 'Upcoming' && coverOf(p)).slice(0, 8);
+  const others = PROJECTS.filter((p) => p.status !== 'Upcoming' && !featured.includes(p));
   return (
     <section id="projects">
       <div className="wrap">
         <div className="head">
-          <div><p className="kicker">Completed</p><h2 className="title">Previous work</h2></div>
-          {sectors.length > 2 && (
-            <div className="filters" role="group" aria-label="Filter projects">
-              {sectors.map((s) => (
-                <button key={s} type="button" aria-pressed={s === current} onClick={() => { setCurrent(s); setShown(6); }}>{s}</button>
-              ))}
-            </div>
-          )}
+          <div><p className="kicker">Selected work</p><h2 className="title">Projects</h2></div>
+          <Link className="go" href="/projects">View all projects &rarr;</Link>
         </div>
-        {list.length ? (
-          <div className="gallery">
-            <div className="col">{left.map((p, k) => <Card key={p.name} p={p} shape={shape(k * 2)} />)}</div>
-            <div className="col">{right.map((p, k) => <Card key={p.name} p={p} shape={shape(k * 2 + 1)} />)}</div>
+        {featured.length > 0 && (
+          <div className="sq-grid">
+            {featured.map((p) => <ProjectCard key={p.name} p={p} />)}
           </div>
-        ) : <p className="muted">No projects in this category yet.</p>}
-        {all.length > shown && (
-          <div className="more"><button type="button" className="btn-line" onClick={() => setShown(shown + 6)}>See more</button></div>
         )}
+        {others.length > 0 && (
+          <div className="also">
+            <p className="kicker">Also by Paravidace</p>
+            <ul>
+              {others.map((p) => (
+                <li key={p.name}>
+                  <Link href={`/projects/${slugOf(p)}`}>
+                    {p.name}{isMulti(p) && <sup>{p.locations.length}</sup>}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div className="more"><Link className="btn-line" href="/projects">View all projects</Link></div>
       </div>
     </section>
   );
@@ -168,16 +82,20 @@ function PreviousWork() {
 
 function Upcoming() {
   const up = PROJECTS.filter((p) => p.status === 'Upcoming');
-  const [shown, setShown] = useState(3);
   if (!up.length) return null;
   return (
     <section id="upcoming">
       <div className="wrap">
         <div className="head"><div><p className="kicker">Coming soon</p><h2 className="title">Upcoming</h2></div></div>
-        <div className="upgrid">{up.slice(0, shown).map((p) => <Card key={p.name} p={p} />)}</div>
-        {up.length > shown && (
-          <div className="more"><button type="button" className="btn-line" onClick={() => setShown(shown + 3)}>See more</button></div>
-        )}
+        <div className="up-list">
+          {up.map((p) => (
+            <Link key={p.name} href={`/projects/${slugOf(p)}`} className="up-item">
+              <span className="up-where">{p.location}{p.country ? `, ${p.country}` : ''}</span>
+              <span className="up-name">{p.name}</span>
+              <span className="up-tag">In progress</span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -201,30 +119,9 @@ function ContactLine({ label, value, placeholder, href, external = true }) {
 }
 
 export default function Home() {
-  const [solid, setSolid] = useState(false);
-  useEffect(() => {
-    const hero = document.getElementById('hero');
-    const on = () => setSolid(window.scrollY > (hero?.offsetHeight || 600) - 90);
-    on();
-    window.addEventListener('scroll', on, { passive: true });
-    return () => window.removeEventListener('scroll', on);
-  }, []);
-
   return (
     <>
-      <header className={solid ? 'solid' : ''}>
-        <div className="wrap nav">
-          <a className="logo" href="#top" aria-label="Paravidace home"><Mark />Paravidace</a>
-          <ul>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#upcoming">Upcoming</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </header>
-
+      <Header overHero />
       <main id="top">
         <Hero />
 
@@ -235,8 +132,8 @@ export default function Home() {
               <h2>Spaces that open on time <strong>and last for years.</strong></h2>
             </div>
             <div className="right">
-              <p>We are a contracting and engineering firm working across Lebanon, Cyprus and Romania. From fashion stores at Le Mall Dbayeh to restaurants, supermarkets and private homes, we carry each project from the first drawing to handover, with design, engineering and construction under one roof.</p>
-              <a className="go" href="#projects">Discover our work &rarr;</a>
+              <p>We build commercial stores, restaurants, supermarkets and much more, all over Lebanon. From fashion stores in Le Mall Dbayeh to Malik&apos;s branches from Jbeil to Saida, we carry every project from the first drawing to handover, with design, engineering and construction under one roof. Our work now reaches Cyprus and Romania too.</p>
+              <Link className="go" href="/projects">Discover our work &rarr;</Link>
             </div>
           </div>
         </div>
@@ -250,7 +147,7 @@ export default function Home() {
           </div>
         </div>
 
-        <PreviousWork />
+        <SelectedWork />
         <Upcoming />
 
         <section id="services">
@@ -271,7 +168,7 @@ export default function Home() {
             <div className="body">
               <p className="kicker">The founder</p>
               <h2 className="title" style={{ fontSize: 'clamp(30px,3.6vw,50px)' }}>Three decades on site.</h2>
-              <p className="muted">Paravidace is led by its founder and CEO, who has spent more than thirty years designing and building across Lebanon, Cyprus and Romania. Every project is followed personally, from the first meeting to the final inspection.</p>
+              <p className="muted">Paravidace is led by its founder and CEO, who has spent more than thirty years designing and building across Lebanon, and now in Cyprus and Romania. Every project is followed personally, from the first meeting to the final inspection.</p>
               <p className="muted">Because architecture, engineering and construction sit within one team, the vision drawn on paper is the one delivered on site.</p>
               <div className="sign"><b>Founder &amp; CEO</b><span>Paravidace</span></div>
             </div>
@@ -283,27 +180,18 @@ export default function Home() {
             <div className="lead">
               <p className="kicker">Contact</p>
               <h2 className="title">Let&apos;s build<br />something lasting.</h2>
-              <a className="btn-line" href="https://www.instagram.com/paravidace/" target="_blank" rel="noopener">Message us</a>
+              <a className="btn-line" href={CONTACT.whatsapp} target="_blank" rel="noopener">Message us on WhatsApp</a>
             </div>
             <div className="lines">
-              <ContactLine label="Instagram" value={CONTACT.instagram} href="https://www.instagram.com/paravidace/" />
               <ContactLine label="Phone / WhatsApp" value={CONTACT.phone} placeholder="+961 00 000 000" href={CONTACT.whatsapp} />
               <ContactLine label="Email" value={CONTACT.email} placeholder="info@paravidace.com" href={CONTACT.email ? 'mailto:' + CONTACT.email : undefined} external={false} />
               <ContactLine label="Office" value={CONTACT.office} placeholder="Address" />
+              <ContactLine label="Instagram" value={CONTACT.instagram} href="https://www.instagram.com/paravidace/" />
             </div>
           </div>
         </section>
       </main>
-
-      <footer>
-        <div className="wrap">
-          <div className="mark">
-            <Mark width={4} color="#D9C7A6" />
-            <div><b>Paravidace</b><span>Contracting &amp; Engineering</span></div>
-          </div>
-          <div className="row"><span>© {new Date().getFullYear()} Paravidace</span><span>Architecture · Engineering · Contracting · Consultation</span></div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
