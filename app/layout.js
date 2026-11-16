@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Paravidace',
-  description: 'Paravidace: contracting, engineering, architecture and consultation in Lebanon and Cyprus. 30+ years, 100+ projects.',
+  description: 'Paravidace: contracting, engineering, architecture and consultation in Lebanon, Cyprus and Romania. 30+ years, 1000+ projects.',
 };
 
 export default function RootLayout({ children }) {

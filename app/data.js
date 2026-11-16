@@ -27,7 +27,8 @@ export const PROJECTS = [
 // Contact details (an empty value shows a grey placeholder).
 export const CONTACT = {
   instagram: '@paravidace',
-  phone: '',
-  email: '',
+  phone: '+961 76 723 444',
+  whatsapp: 'https://wa.me/96176723444',
+  email: 'daniel.srour@paravidagroup.com',
   office: '',
 };

@@ -58,7 +58,7 @@ function Hero() {
         <div className="wrap">
           <div>
             <h1>Designed, engineered<br />and built as one.</h1>
-            <div className="sub"><span>Lebanon</span><i /><span>Cyprus</span><i /><span>30+ years</span></div>
+            <div className="sub"><span>Lebanon</span><i /><span>Cyprus</span><i /><span>Romania</span><i /><span>30+ years</span></div>
           </div>
           {n > 1 && (
             <div className="counter">
@@ -131,7 +131,7 @@ function Upcoming() {
   );
 }
 
-function ContactLine({ label, value, placeholder, href }) {
+function ContactLine({ label, value, placeholder, href, external = true }) {
   const [copied, setCopied] = useState(false);
   const text = value || placeholder;
   const copy = () => {
@@ -141,7 +141,7 @@ function ContactLine({ label, value, placeholder, href }) {
     <div className="ln">
       <div>
         <span className="k">{label}</span>
-        {href ? <a className="v" href={href} target="_blank" rel="noopener">{text}</a> : <span className={'v' + (value ? '' : ' todo')}>{text}</span>}
+        {href ? <a className="v" href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{text}</a> : <span className={'v' + (value ? '' : ' todo')}>{text}</span>}
       </div>
       <button className="copy" type="button" onClick={copy}>{copied ? 'Copied' : 'Copy'}</button>
     </div>
@@ -183,7 +183,7 @@ export default function Home() {
               <h2>Spaces that open on time <strong>and last for years.</strong></h2>
             </div>
             <div className="right">
-              <p>We are a contracting and engineering firm working across Lebanon and Cyprus. From fashion stores at Le Mall Dbayeh to restaurants, supermarkets and private homes, we carry each project from the first drawing to handover, with design, engineering and construction under one roof.</p>
+              <p>We are a contracting and engineering firm working across Lebanon, Cyprus and Romania. From fashion stores at Le Mall Dbayeh to restaurants, supermarkets and private homes, we carry each project from the first drawing to handover, with design, engineering and construction under one roof.</p>
               <a className="go" href="#projects">Discover our work &rarr;</a>
             </div>
           </div>
@@ -192,8 +192,8 @@ export default function Home() {
         <div className="numbers" aria-label="Key figures">
           <div className="wrap">
             <div className="num"><b>30+</b><span>Years of experience</span></div>
-            <div className="num"><b>100+</b><span>Projects completed</span></div>
-            <div className="num"><b>2</b><span>Countries</span></div>
+            <div className="num"><b>1000+</b><span>Projects completed</span></div>
+            <div className="num"><b>3</b><span>Countries</span></div>
             <div className="num"><b>4</b><span>Services in-house</span></div>
           </div>
         </div>
@@ -219,7 +219,7 @@ export default function Home() {
             <div className="body">
               <p className="kicker">The founder</p>
               <h2 className="title" style={{ fontSize: 'clamp(30px,3.6vw,50px)' }}>Three decades on site.</h2>
-              <p className="muted">Paravidace is led by its founder and CEO, who has spent more than thirty years designing and building across Lebanon and Cyprus. Every project is followed personally, from the first meeting to the final inspection.</p>
+              <p className="muted">Paravidace is led by its founder and CEO, who has spent more than thirty years designing and building across Lebanon, Cyprus and Romania. Every project is followed personally, from the first meeting to the final inspection.</p>
               <p className="muted">Because architecture, engineering and construction sit within one team, the vision drawn on paper is the one delivered on site.</p>
               <div className="sign"><b>Founder &amp; CEO</b><span>Paravidace</span></div>
             </div>
@@ -235,8 +235,8 @@ export default function Home() {
             </div>
             <div className="lines">
               <ContactLine label="Instagram" value={CONTACT.instagram} href="https://www.instagram.com/paravidace/" />
-              <ContactLine label="Phone / WhatsApp" value={CONTACT.phone} placeholder="+961 00 000 000" />
-              <ContactLine label="Email" value={CONTACT.email} placeholder="info@paravidace.com" />
+              <ContactLine label="Phone / WhatsApp" value={CONTACT.phone} placeholder="+961 00 000 000" href={CONTACT.whatsapp} />
+              <ContactLine label="Email" value={CONTACT.email} placeholder="info@paravidace.com" href={CONTACT.email ? 'mailto:' + CONTACT.email : undefined} external={false} />
               <ContactLine label="Office" value={CONTACT.office} placeholder="Address" />
             </div>
           </div>
