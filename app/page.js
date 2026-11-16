@@ -23,16 +23,68 @@ function Photo({ src, alt, label = 'Photo', pos, className = '' }) {
   );
 }
 
-function Card({ p, shape = '' }) {
-  const where = p.country ? `${p.location}, ${p.country}` : p.location;
+function LocationsPanel({ p, onClose }) {
+  useEffect(() => {
+    const key = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', key);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', key); document.body.style.overflow = prev; };
+  }, [onClose]);
   return (
-    <article className="card">
-      <Photo src={p.img} alt={p.name} className={shape} />
+    <div className="locs-overlay" role="dialog" aria-modal="true" aria-label={`${p.name} locations`} onClick={onClose}>
+      <div className="locs-panel" onClick={(e) => e.stopPropagation()}>
+        <div className="locs-head">
+          <div>
+            <p className="kicker">{p.locations.length} locations · {p.country}</p>
+            <h2 className="title">{p.name}</h2>
+          </div>
+          <button type="button" className="locs-close" onClick={onClose} aria-label="Close">Close ✕</button>
+        </div>
+        <div className="locs-grid">
+          {p.locations.map((l) => (
+            <article key={l.name} className="loc-card">
+              <Photo src={l.img} alt={`${p.name} ${l.name}`} />
+              <div className="loc-cap">
+                <h3>{l.name}</h3>
+                <span className="loc">{p.country}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Card({ p, shape = '' }) {
+  const [open, setOpen] = useState(false);
+  const multi = Array.isArray(p.locations) && p.locations.length > 1;
+  const cover = p.img || (multi && (p.locations.find((l) => l.img) || {}).img) || '';
+  const where = multi
+    ? `${p.locations.length} locations · ${p.country}`
+    : (p.country ? `${p.location}, ${p.country}` : p.location);
+  const names = multi ? p.locations.map((l) => l.name) : [];
+  return (
+    <article className={'card' + (multi ? ' multi' : '')}>
+      {multi ? (
+        <button type="button" className="ph-btn" onClick={() => setOpen(true)} aria-label={`See all ${p.name} locations`}>
+          <Photo src={cover} alt={p.name} className={shape} />
+          <span className="count">{p.locations.length}<small>locations</small></span>
+        </button>
+      ) : <Photo src={cover} alt={p.name} className={shape} />}
       <div className="cap">
         <h3>{p.name}</h3>
         <span className="loc">{where}</span>
+        {multi && (
+          <span className="branches">
+            {names.slice(0, 4).join(' · ')}{names.length > 4 ? ` · +${names.length - 4} more` : ''}
+          </span>
+        )}
         {p.services?.length > 0 && <span className="svc">{p.services.join('  ·  ')}</span>}
+        {multi && <button type="button" className="see-all" onClick={() => setOpen(true)}>See all locations &rarr;</button>}
       </div>
+      {open && <LocationsPanel p={p} onClose={() => setOpen(false)} />}
     </article>
   );
 }

@@ -156,3 +156,30 @@ footer .mark div { display: grid; gap: 10px; min-width: 0 }
 footer .mark b { font-size: clamp(24px, 5.4vw, 72px); font-weight: 500; letter-spacing: .3em; text-transform: uppercase; line-height: 1; overflow-wrap: anywhere }
 footer .mark span { font-size: clamp(9px, 1vw, 13px); letter-spacing: .36em; text-transform: uppercase; color: #D9C7A6 }
 footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14) }
+
+/* brands with several branches */
+.ph-btn { display: block; position: relative; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; text-align: left; color: inherit }
+.ph-btn:hover .ph img { transform: scale(1.045) }
+.ph-btn .count { position: absolute; left: 18px; bottom: 18px; z-index: 1; display: grid; gap: 4px; background: #fff; color: var(--ink); padding: 14px 18px 12px; font-size: 30px; font-weight: 500; line-height: 1; letter-spacing: -.01em }
+.ph-btn .count small { font-size: 9px; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-ink) }
+.card .branches { grid-column: 1 / -1; font-size: 13px; color: var(--muted); line-height: 1.7 }
+.see-all { grid-column: 1 / -1; justify-self: start; margin-top: 6px; font: 500 11px/1 var(--font); letter-spacing: .26em; text-transform: uppercase; background: none; border: 0; border-bottom: 1px solid var(--gold); color: var(--ink); padding: 0 0 8px; cursor: pointer }
+.see-all:hover { color: var(--gold-ink) }
+
+.locs-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(14,14,14,.55); display: flex; justify-content: flex-end; animation: fadeIn .3s ease }
+.locs-panel { width: min(1100px, 100%); height: 100%; overflow-y: auto; background: var(--bg); padding: calc(env(safe-area-inset-top, 0px) + clamp(28px, 4vw, 56px)) max(24px, env(safe-area-inset-right, 0px)) clamp(48px, 6vw, 80px) max(24px, env(safe-area-inset-left, 0px)); animation: slideIn .45s cubic-bezier(.2,.7,.2,1) }
+@media (min-width: 700px) { .locs-panel { padding-left: clamp(32px, 4vw, 64px); padding-right: clamp(32px, 4vw, 64px) } }
+.locs-head { display: flex; justify-content: space-between; align-items: start; gap: 24px; margin-bottom: clamp(32px, 4vw, 56px); padding-bottom: 24px; border-bottom: 1px solid var(--line) }
+.locs-head > div { display: grid; gap: 14px; min-width: 0 }
+.locs-close { flex: none; font: 500 11px/1 var(--font); letter-spacing: .26em; text-transform: uppercase; background: none; border: 1px solid var(--ink); color: var(--ink); padding: 14px 18px; cursor: pointer }
+.locs-close:hover { background: var(--ink); color: #fff }
+.locs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 22px }
+@media (max-width: 860px) { .locs-grid { grid-template-columns: 1fr 1fr } }
+@media (max-width: 480px) { .locs-grid { grid-template-columns: 1fr } }
+.loc-card { display: grid; gap: 14px; min-width: 0 }
+.loc-card .ph { aspect-ratio: 4 / 3 }
+.loc-cap { display: grid; gap: 4px }
+.loc-cap h3 { font-size: 18px; font-weight: 400; margin: 0 }
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes slideIn { from { transform: translateX(40px); opacity: 0 } to { transform: none; opacity: 1 } }
+@media (prefers-reduced-motion: reduce) { .locs-overlay, .locs-panel { animation: none } }
