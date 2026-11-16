@@ -34,7 +34,7 @@ export const PROJECTS = [
     ],
   },
   {
-    name: 'LC Waikiki', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '',
+    name: 'LC Waikiki', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/lc-waikiki.jpg',
     locations: [
       { name: 'City Centre Beirut', img: '' },
       { name: 'Hamra', img: '' },
