@@ -90,6 +90,11 @@ function Upcoming() {
         <div className="up-list">
           {up.map((p) => (
             <Link key={p.name} href={`/projects/${slugOf(p)}`} className="up-item">
+              {p.logo && (
+                <span className={'logo-tile' + (p.logoBg ? ' filled' : '')} style={p.logoBg ? { background: p.logoBg } : undefined}>
+                  <img src={p.logo} alt={`${p.name} logo`} loading="lazy" />
+                </span>
+              )}
               <span className="up-where">{p.location}{p.country ? `, ${p.country}` : ''}</span>
               <span className="up-name">{p.name}</span>
               <span className="up-tag">In progress</span>

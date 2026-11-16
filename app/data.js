@@ -13,7 +13,7 @@ export const ABOUT_PHOTO = '/img/store-round-window.jpg';
 
 // Projects. sector: Retail, Restaurants, Supermarkets, Commercial or Residential.
 // status: "Completed" or "Upcoming". services: any of Architecture, Engineering, Contracting, Consultation.
-// img: "" shows a placeholder.
+// img: "" shows a placeholder. logo: brand logo shown when there is no photo yet (logoBg: tile colour, optional).
 // A brand with several branches gets a "locations" list instead of one location:
 // each branch is { name: 'Branch name', img: '/img/photo.jpg', map: 'Google Maps link (optional)' }.
 export const PROJECTS = [
@@ -46,9 +46,9 @@ export const PROJECTS = [
     ],
   },
   { name: 'Miniso', location: 'ABC Verdun', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/miniso.jpg' },
-  { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '' },
-  { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '' },
-  { name: 'APM Monaco', location: 'Romania', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '' },
+  { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '', logo: '/img/logo-starbucks.png' },
+  { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-luisa-spagnoli.png' },
+  { name: 'APM Monaco', location: 'Romania', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-apm-monaco.png', logoBg: '#081631' },
 ];
 
 // Contact details (an empty value shows a grey placeholder).
