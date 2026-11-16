@@ -52,7 +52,7 @@ export default function ProjectPage({ params }) {
                 {withPhoto.map((l) => (
                   <article key={l.name} className="loc-card">
                     <Photo src={l.img} alt={`${p.name} ${l.name}`} />
-                    <div className="loc-cap"><h3>{l.name}</h3><span className="loc">{country}</span></div>
+                    <div className="loc-cap"><h3>{l.name}</h3><span className="loc">{country}</span>{l.map && <a className="maplink" href={l.map} target="_blank" rel="noopener">View on map ↗</a>}</div>
                   </article>
                 ))}
               </div>
@@ -61,7 +61,12 @@ export default function ProjectPage({ params }) {
               <div className="branch-list">
                 <p className="kicker">{withPhoto.length ? 'More branches' : 'Branches'}</p>
                 <ol>
-                  {noPhoto.map((l) => <li key={l.name}><span>{l.name}</span><small>{country}</small></li>)}
+                  {noPhoto.map((l) => (
+                    <li key={l.name}>
+                      <span>{l.name}</span>
+                      {l.map ? <a className="maplink" href={l.map} target="_blank" rel="noopener">View on map ↗</a> : <small>{country}</small>}
+                    </li>
+                  ))}
                 </ol>
               </div>
             )}

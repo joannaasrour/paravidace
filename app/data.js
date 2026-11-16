@@ -15,7 +15,7 @@ export const ABOUT_PHOTO = '/img/store-round-window.jpg';
 // status: "Completed" or "Upcoming". services: any of Architecture, Engineering, Contracting, Consultation.
 // img: "" shows a placeholder.
 // A brand with several branches gets a "locations" list instead of one location:
-// each branch is { name: 'Branch name', img: '/img/photo.jpg' } and shows under "See all locations".
+// each branch is { name: 'Branch name', img: '/img/photo.jpg', map: 'Google Maps link (optional)' }.
 export const PROJECTS = [
   { name: 'Pull&Bear', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/pull-and-bear.jpg' },
   { name: 'Bershka', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/bershka.jpg' },
@@ -25,7 +25,7 @@ export const PROJECTS = [
     locations: [
       { name: 'Mansourieh', img: '/img/maliks-mansourieh.jpg' },
       { name: 'Damour', img: '' },
-      { name: 'Naameh', img: '' },
+      { name: 'Naameh', img: '', map: 'https://maps.app.goo.gl/rfckfH9QEbBAp8Yo8' },
       { name: 'Saida', img: '' },
       { name: 'Jbeil', img: '' },
       { name: 'Zouk', img: '' },
