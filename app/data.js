@@ -24,8 +24,8 @@ export const PROJECTS = [
     name: "Malik's", country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '',
     locations: [
       { name: 'Mansourieh', img: '/img/maliks-mansourieh.jpg' },
-      { name: 'Damour', img: '' },
-      { name: 'Naameh', img: '', map: 'https://maps.app.goo.gl/rfckfH9QEbBAp8Yo8' },
+      { name: 'Damour', img: '', map: 'https://maps.app.goo.gl/rfckfH9QEbBAp8Yo8' },
+      { name: 'Naameh', img: '' },
       { name: 'Saida', img: '' },
       { name: 'Jbeil', img: '' },
       { name: 'Zouk', img: '' },
