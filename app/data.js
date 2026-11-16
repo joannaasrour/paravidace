@@ -57,5 +57,5 @@ export const CONTACT = {
   phone: '+961 76 723 444',
   whatsapp: 'https://wa.me/96176723444',
   email: 'daniel.srour@paravidagroup.com',
-  office: '',
+  office: 'Bsalim, Mount Lebanon',
 };
