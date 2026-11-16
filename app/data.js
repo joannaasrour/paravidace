@@ -45,7 +45,7 @@ export const PROJECTS = [
       { name: 'Le Mall', img: '' },
     ],
   },
-  { name: 'Miniso', location: 'ABC Verdun', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '' },
+  { name: 'Miniso', location: 'ABC Verdun', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/miniso.jpg' },
   { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '' },
   { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '' },
   { name: 'APM Monaco', location: 'Romania', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '' },
