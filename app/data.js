@@ -55,6 +55,11 @@ export const PROJECTS = [
     img: '/img/decathlon-cyprus-1.jpg',
     gallery: ['/img/decathlon-cyprus-2.jpg', '/img/decathlon-cyprus-3.jpg', '/img/decathlon-cyprus-4.jpg', '/img/decathlon-cyprus-5.jpg'],
   },
+  {
+    name: 'Mango', location: 'Beirut Souks', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [],
+    img: '/img/mango-souks-1.jpg',
+    gallery: ['/img/mango-souks-2.jpg', '/img/mango-souks-3.jpg', '/img/mango-souks-4.jpg', '/img/mango-souks-5.jpg'], galleryTall: true,
+  },
   { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '', logo: '/img/logo-starbucks.png' },
   { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-luisa-spagnoli.png' },
   { name: 'APM Monaco', location: 'Romania', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-apm-monaco.png', logoBg: '#081631' },
