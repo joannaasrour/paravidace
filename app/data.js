@@ -80,6 +80,11 @@ export const PROJECTS = [
     img: '/img/stradivarius-souks-1.jpg',
     gallery: ['/img/stradivarius-souks-2.jpg', '/img/stradivarius-souks-3.jpg', '/img/stradivarius-souks-4.jpg', '/img/stradivarius-souks-5.jpg'], galleryTall: true,
   },
+  {
+    name: 'Boggi Milano', location: 'Beirut Souks', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [],
+    img: '/img/boggi-souks-1.jpg',
+    gallery: ['/img/boggi-souks-2.jpg', '/img/boggi-souks-3.jpg', '/img/boggi-souks-4.jpg', '/img/boggi-souks-5.jpg'],
+  },
   { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '', logo: '/img/logo-starbucks.png' },
   { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-luisa-spagnoli.png' },
   { name: 'APM Monaco', location: 'Romania', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-apm-monaco.png', logoBg: '#081631' },
