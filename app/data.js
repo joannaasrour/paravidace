@@ -26,7 +26,14 @@ export const PROJECTS = [
     ],
     gallery: ['/img/pull-and-bear-souks-2.jpg', '/img/pull-and-bear-souks-3.jpg', '/img/pull-and-bear-souks-4.jpg', '/img/pull-and-bear-souks-5.jpg'], galleryTall: true,
   },
-  { name: 'Bershka', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/bershka.jpg' },
+  {
+    name: 'Bershka', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/bershka-souks-1.jpg',
+    locations: [
+      { name: 'Beirut Souks', img: '/img/bershka-souks-1.jpg' },
+      { name: 'Le Mall Dbayeh', img: '/img/bershka.jpg' },
+    ],
+    gallery: ['/img/bershka-souks-2.jpg', '/img/bershka-souks-3.jpg', '/img/bershka-souks-4.jpg', '/img/bershka-souks-5.jpg'], galleryTall: true,
+  },
   {
     name: 'Salsa Jeans', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/salsa-jeans.jpg',
     gallery: ['/img/salsa-jeans-2.jpg', '/img/salsa-jeans-3.jpg', '/img/salsa-jeans-4.jpg', '/img/salsa-jeans-5.jpg'], galleryTall: true,
