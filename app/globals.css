@@ -298,3 +298,6 @@ footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; ga
 .gallery-grid.tall { grid-template-columns: repeat(4, minmax(0, 1fr)) }
 .gallery-grid.tall .ph { aspect-ratio: 3 / 4 }
 @media (max-width: 900px) { .gallery-grid.tall { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+
+.branch-gallery { display: grid; gap: 20px }
+.gallery-grid.flat { margin-top: 0 }

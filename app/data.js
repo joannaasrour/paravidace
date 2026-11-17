@@ -18,7 +18,14 @@ export const ABOUT_PHOTO = '/img/store-round-window.jpg';
 // A brand with several branches gets a "locations" list instead of one location:
 // each branch is { name: 'Branch name', img: '/img/photo.jpg', map: 'Google Maps link (optional)' }.
 export const PROJECTS = [
-  { name: 'Pull&Bear', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/pull-and-bear.jpg' },
+  {
+    name: 'Pull&Bear', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/pull-and-bear-souks-1.jpg',
+    locations: [
+      { name: 'Beirut Souks', img: '/img/pull-and-bear-souks-1.jpg' },
+      { name: 'Le Mall Dbayeh', img: '/img/pull-and-bear.jpg' },
+    ],
+    gallery: ['/img/pull-and-bear-souks-2.jpg', '/img/pull-and-bear-souks-3.jpg', '/img/pull-and-bear-souks-4.jpg', '/img/pull-and-bear-souks-5.jpg'], galleryTall: true,
+  },
   { name: 'Bershka', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/bershka.jpg' },
   {
     name: 'Salsa Jeans', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/salsa-jeans.jpg',
@@ -59,6 +66,11 @@ export const PROJECTS = [
     name: 'Mango', location: 'Beirut Souks', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [],
     img: '/img/mango-souks-1.jpg',
     gallery: ['/img/mango-souks-2.jpg', '/img/mango-souks-3.jpg', '/img/mango-souks-4.jpg', '/img/mango-souks-5.jpg'], galleryTall: true,
+  },
+  {
+    name: 'Stradivarius', location: 'Beirut Souks', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [],
+    img: '/img/stradivarius-souks-1.jpg',
+    gallery: ['/img/stradivarius-souks-2.jpg', '/img/stradivarius-souks-3.jpg', '/img/stradivarius-souks-4.jpg', '/img/stradivarius-souks-5.jpg'], galleryTall: true,
   },
   { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '', logo: '/img/logo-starbucks.png' },
   { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-luisa-spagnoli.png' },

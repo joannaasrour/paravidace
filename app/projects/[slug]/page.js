@@ -71,6 +71,14 @@ export default function ProjectPage({ params }) {
                 ))}
               </div>
             )}
+            {p.gallery?.length > 0 && (
+              <div className="branch-gallery">
+                <p className="kicker">Inside {p.galleryOf || p.locations[0].name}</p>
+                <div className={'gallery-grid flat' + (p.galleryTall ? ' tall' : '')}>
+                  {p.gallery.map((g, k) => <Photo key={g} src={g} alt={`${p.name}, interior ${k + 1}`} />)}
+                </div>
+              </div>
+            )}
             {noPhoto.length > 0 && (
               <div className="branch-list">
                 <p className="kicker">{withPhoto.length ? 'More branches' : 'Branches'}</p>
