@@ -31,6 +31,7 @@ export const PROJECTS = [
     locations: [
       { name: 'Beirut Souks', img: '/img/bershka-souks-1.jpg' },
       { name: 'Le Mall Dbayeh', img: '/img/bershka.jpg' },
+      { name: 'City Centre Beirut', img: '/img/bershka-city-centre.jpg' },
     ],
     gallery: ['/img/bershka-souks-2.jpg', '/img/bershka-souks-3.jpg', '/img/bershka-souks-4.jpg', '/img/bershka-souks-5.jpg'], galleryTall: true,
   },
