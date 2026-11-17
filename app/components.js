@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { PROJECTS, CONTACT, SECTOR_ORDER, slugOf, isMulti, coverOf, whereOf } from './data';
+import { CONTACT, SECTOR_ORDER, slugOf, isMulti, coverOf, whereOf, rankOf } from './data';
 
 export function Mark({ width = 5, color = 'currentColor' }) {
   return (
@@ -84,7 +84,7 @@ export function ProjectCard({ p, shape = '' }) {
 }
 
 /* full projects page: filters, search, photo cards, and an index of every project */
-export function ProjectsIndex() {
+export function ProjectsIndex({ projects: PROJECTS }) {
   const sectors = ['All', ...SECTOR_ORDER.filter((s) => PROJECTS.some((p) => p.sector === s))];
   const [sector, setSector] = useState('All');
   const [status, setStatus] = useState('All');
@@ -96,10 +96,8 @@ export function ProjectsIndex() {
       (status === 'All' || p.status === status) &&
       (!term || [p.name, p.location, p.country, ...(p.locations || []).map((l) => l.name)].join(' ').toLowerCase().includes(term))
     );
-  }, [sector, status, q]);
-  const FIRST = ['Stradivarius', 'Boggi Milano', 'Mango', 'Pull&Bear', 'Bershka', 'Oysho', 'Salsa Jeans', 'Decathlon'];
-  const rank = (p) => { const i = FIRST.indexOf(p.name); return i < 0 ? 99 : i; };
-  const withPhoto = list.filter((p) => coverOf(p)).sort((a, b) => rank(a) - rank(b));
+  }, [sector, status, q, PROJECTS]);
+  const withPhoto = list.filter((p) => coverOf(p)).sort((a, b) => rankOf(a) - rankOf(b));
   const branches = PROJECTS.reduce((n, p) => n + (isMulti(p) ? p.locations.length : 1), 0);
 
   return (

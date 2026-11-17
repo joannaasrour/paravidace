@@ -103,7 +103,7 @@ export const CONTACT = {
 };
 
 // ---------- helpers (no need to edit) ----------
-export const slugOf = (p) => p.name.toLowerCase().replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+export const slugOf = (p) => p.slug || p.name.toLowerCase().replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 export const isMulti = (p) => Array.isArray(p.locations) && p.locations.length > 1;
 export const coverOf = (p) => p.img || (isMulti(p) && (p.locations.find((l) => l.img) || {}).img) || '';
 export const placeOf = (p) => (isMulti(p) ? `${p.locations.length} locations` : p.location);
@@ -113,4 +113,19 @@ export const whereOf = (p) => {
   const c = countryOf(p);
   if (isMulti(p)) return `${p.locations.length} locations${c ? ' · ' + c : ''}`;
   return [p.location, p.country].filter(Boolean).join(', ');
+};
+
+// Home page selection: projects ticked "Show on the home page" in the admin panel, in their order.
+// Without any ticked, the Beirut Souks stores come first.
+const FIRST = ['Stradivarius', 'Boggi Milano', 'Mango', 'Pull&Bear', 'Bershka', 'Oysho', 'Salsa Jeans', 'Decathlon'];
+export const rankOf = (p) => {
+  if (p.featured) return typeof p.order === 'number' ? p.order : 50;
+  const i = FIRST.indexOf(p.name);
+  return i < 0 ? 999 : 100 + i;
+};
+export const featuredOf = (projects, max = 12) => {
+  const done = projects.filter((p) => p.status !== 'Upcoming' && coverOf(p));
+  const anyTicked = done.some((p) => p.featured);
+  const pool = anyTicked ? done.filter((p) => p.featured) : done;
+  return [...pool].sort((a, b) => rankOf(a) - rankOf(b)).slice(0, max);
 };

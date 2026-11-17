@@ -1,19 +1,26 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { PROJECTS, slugOf, isMulti, coverOf, whereOf, countryOf } from '../../data';
+import { slugOf, isMulti, coverOf, whereOf, countryOf } from '../../data';
+import { getContent } from '../../lib/content';
+
+export const revalidate = 60;
+export const dynamicParams = true;
 import { Header, Footer, Photo } from '../../components';
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const { projects: PROJECTS } = await getContent();
   return PROJECTS.map((p) => ({ slug: slugOf(p) }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
+  const { projects: PROJECTS } = await getContent();
   const p = PROJECTS.find((x) => slugOf(x) === params.slug);
   if (!p) return {};
   return { title: `${p.name} · Paravidace`, description: `${p.name}, ${whereOf(p)}. A ${p.sector.toLowerCase()} project by Paravidace.` };
 }
 
-export default function ProjectPage({ params }) {
+export default async function ProjectPage({ params }) {
+  const { projects: PROJECTS } = await getContent();
   const i = PROJECTS.findIndex((x) => slugOf(x) === params.slug);
   if (i < 0) notFound();
   const p = PROJECTS[i];
