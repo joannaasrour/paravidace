@@ -3,6 +3,7 @@
 
 // Big slideshow at the top. pos = which part of the photo stays visible ("50% 50%" = centre).
 export const HERO_PHOTOS = [
+  { src: '/img/decathlon-cyprus-1.jpg', pos: '50% 50%' },
   { src: '/img/pull-and-bear.jpg', pos: '50% 55%' },
   { src: '/img/salsa-jeans.jpg', pos: '50% 55%' },
   { src: '/img/bershka.jpg', pos: '50% 40%' },
@@ -13,7 +14,7 @@ export const ABOUT_PHOTO = '/img/store-round-window.jpg';
 
 // Projects. sector: Retail, Restaurants, Supermarkets, Commercial or Residential.
 // status: "Completed" or "Upcoming". services: any of Architecture, Engineering, Contracting, Consultation.
-// img: "" shows a placeholder. logo: brand logo shown when there is no photo yet (logoBg: tile colour, optional).
+// img: "" shows a placeholder. gallery: extra photos shown on the project's page. logo: brand logo shown when there is no photo yet (logoBg: tile colour, optional).
 // A brand with several branches gets a "locations" list instead of one location:
 // each branch is { name: 'Branch name', img: '/img/photo.jpg', map: 'Google Maps link (optional)' }.
 export const PROJECTS = [
@@ -46,6 +47,11 @@ export const PROJECTS = [
     ],
   },
   { name: 'Miniso', location: 'ABC Verdun', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/miniso.jpg' },
+  {
+    name: 'Decathlon', location: 'Cyprus', country: '', sector: 'Retail', status: 'Completed', services: [],
+    img: '/img/decathlon-cyprus-1.jpg',
+    gallery: ['/img/decathlon-cyprus-2.jpg', '/img/decathlon-cyprus-3.jpg', '/img/decathlon-cyprus-4.jpg', '/img/decathlon-cyprus-5.jpg'],
+  },
   { name: 'Starbucks', location: 'Zalka', country: 'Lebanon', sector: 'Restaurants', status: 'Upcoming', services: [], img: '', logo: '/img/logo-starbucks.png' },
   { name: 'Luisa Spagnoli', location: 'Cyprus', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-luisa-spagnoli.png' },
   { name: 'APM Monaco', location: 'Romania', country: '', sector: 'Retail', status: 'Upcoming', services: [], img: '', logo: '/img/logo-apm-monaco.png', logoBg: '#081631' },

@@ -44,6 +44,13 @@ export default function ProjectPage({ params }) {
         {!multi && cover && (
           <div className="wrap"><Photo src={cover} alt={p.name} className="detail-photo" /></div>
         )}
+        {!multi && p.gallery?.length > 0 && (
+          <div className="wrap">
+            <div className="gallery-grid">
+              {p.gallery.map((g, k) => <Photo key={g} src={g} alt={`${p.name}, photo ${k + 2}`} />)}
+            </div>
+          </div>
+        )}
         {!multi && !cover && p.logo && (
           <div className="wrap">
             <div className={'logo-tile detail-logo' + (p.logoBg ? ' filled' : '')} style={p.logoBg ? { background: p.logoBg } : undefined}>
