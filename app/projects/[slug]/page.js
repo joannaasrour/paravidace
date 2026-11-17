@@ -46,7 +46,7 @@ export default function ProjectPage({ params }) {
         )}
         {!multi && p.gallery?.length > 0 && (
           <div className="wrap">
-            <div className="gallery-grid">
+            <div className={'gallery-grid' + (p.galleryTall ? ' tall' : '')}>
               {p.gallery.map((g, k) => <Photo key={g} src={g} alt={`${p.name}, photo ${k + 2}`} />)}
             </div>
           </div>

@@ -20,7 +20,10 @@ export const ABOUT_PHOTO = '/img/store-round-window.jpg';
 export const PROJECTS = [
   { name: 'Pull&Bear', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/pull-and-bear.jpg' },
   { name: 'Bershka', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/bershka.jpg' },
-  { name: 'Salsa Jeans', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/salsa-jeans.jpg' },
+  {
+    name: 'Salsa Jeans', location: 'Le Mall Dbayeh', country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '/img/salsa-jeans.jpg',
+    gallery: ['/img/salsa-jeans-2.jpg', '/img/salsa-jeans-3.jpg', '/img/salsa-jeans-4.jpg', '/img/salsa-jeans-5.jpg'], galleryTall: true,
+  },
   {
     name: "Malik's", country: 'Lebanon', sector: 'Retail', status: 'Completed', services: [], img: '',
     locations: [
