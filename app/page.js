@@ -27,7 +27,7 @@ function Hero() {
       <div className="hero-copy">
         <div className="wrap">
           <div>
-            <h1>Designed, engineered<br />and built as one.</h1>
+            <h1>Built as one.</h1>
             <div className="sub"><span>Lebanon</span><i /><span>Cyprus</span><i /><span>Romania</span><i /><span>30+ years</span></div>
           </div>
           {n > 1 && (
@@ -134,7 +134,7 @@ export default function Home() {
           <div className="wrap">
             <div className="left">
               <p className="kicker">Paravidace</p>
-              <h2>Spaces that open on time <strong>and last for years.</strong></h2>
+              <h2>Spaces built to last.</h2>
             </div>
             <div className="right">
               <p>Paravidace designs and builds commercial spaces across Lebanon, Cyprus and Romania: retail stores, restaurants, supermarkets and much more, along with private homes. International brands trust us to deliver their stores to their exact standards, on time.</p>
