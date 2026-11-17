@@ -46,7 +46,9 @@ function Hero() {
 }
 
 function SelectedWork() {
-  const featured = PROJECTS.filter((p) => p.status !== 'Upcoming' && coverOf(p)).slice(0, 8);
+  const FIRST = ['Stradivarius', 'Boggi Milano', 'Mango', 'Pull&Bear', 'Bershka', 'Oysho', 'Salsa Jeans', 'Decathlon'];
+  const rank = (p) => { const i = FIRST.indexOf(p.name); return i < 0 ? 99 : i; };
+  const featured = PROJECTS.filter((p) => p.status !== 'Upcoming' && coverOf(p)).sort((a, b) => rank(a) - rank(b)).slice(0, 12);
   const others = PROJECTS.filter((p) => p.status !== 'Upcoming' && !featured.includes(p));
   return (
     <section id="projects">

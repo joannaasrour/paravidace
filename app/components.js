@@ -97,7 +97,9 @@ export function ProjectsIndex() {
       (!term || [p.name, p.location, p.country, ...(p.locations || []).map((l) => l.name)].join(' ').toLowerCase().includes(term))
     );
   }, [sector, status, q]);
-  const withPhoto = list.filter((p) => coverOf(p));
+  const FIRST = ['Stradivarius', 'Boggi Milano', 'Mango', 'Pull&Bear', 'Bershka', 'Oysho', 'Salsa Jeans', 'Decathlon'];
+  const rank = (p) => { const i = FIRST.indexOf(p.name); return i < 0 ? 99 : i; };
+  const withPhoto = list.filter((p) => coverOf(p)).sort((a, b) => rank(a) - rank(b));
   const branches = PROJECTS.reduce((n, p) => n + (isMulti(p) ? p.locations.length : 1), 0);
 
   return (
