@@ -3,10 +3,12 @@
 
 // Big slideshow at the top. pos = which part of the photo stays visible ("50% 50%" = centre).
 export const HERO_PHOTOS = [
+  { src: '/img/pull-and-bear-souks-1.jpg', pos: '50% 62%' },
+  { src: '/img/boggi-souks-3.jpg', pos: '50% 55%' },
+  { src: '/img/stradivarius-souks-1.jpg', pos: '50% 60%' },
+  { src: '/img/bershka-souks-1.jpg', pos: '50% 60%' },
+  { src: '/img/mango-souks-1.jpg', pos: '50% 55%' },
   { src: '/img/decathlon-cyprus-1.jpg', pos: '50% 50%' },
-  { src: '/img/pull-and-bear.jpg', pos: '50% 55%' },
-  { src: '/img/salsa-jeans.jpg', pos: '50% 55%' },
-  { src: '/img/bershka.jpg', pos: '50% 40%' },
 ];
 
 // Photo in the About section.

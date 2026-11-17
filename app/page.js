@@ -137,7 +137,8 @@ export default function Home() {
               <h2>Spaces that open on time <strong>and last for years.</strong></h2>
             </div>
             <div className="right">
-              <p>We build commercial stores, restaurants, supermarkets and much more, all over Lebanon. From fashion stores in Le Mall Dbayeh to Malik&apos;s branches from Jbeil to Saida, we carry every project from the first drawing to handover, with design, engineering and construction under one roof. Our work now reaches Cyprus and Romania too.</p>
+              <p>Paravidace designs and builds commercial spaces across Lebanon, Cyprus and Romania: retail stores, restaurants, supermarkets and much more, along with private homes. International brands trust us to deliver their stores to their exact standards, on time.</p>
+              <p>We handle every project from the first drawing to handover, with architecture, engineering and construction under one roof. One team stays responsible for the whole job, so the space we draw is the space we deliver.</p>
               <Link className="go" href="/projects">Discover our work &rarr;</Link>
             </div>
           </div>
